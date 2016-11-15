@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 30071dfb6735f9f4c9f724771e20b9c9
-timeCreated: 1478728555
+guid: e7b571afd62b5c840908824543d53bb5
+timeCreated: 1479236615
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - blood: {fileID: 1000013596854332, guid: 5402fa0965247524992c10dc90df9047, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

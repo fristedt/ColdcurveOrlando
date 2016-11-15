@@ -29,7 +29,7 @@ public class BulletController : MonoBehaviour {
             if (hit.collider != null) {
                 Destroy(gameObject);
                 if (hit.collider.tag == "Human") {
-                    hit.collider.gameObject.GetComponent<Human>().Hit();
+                    hit.collider.gameObject.GetComponent<Shootable>().OnHit();
                 }
             }
         }
