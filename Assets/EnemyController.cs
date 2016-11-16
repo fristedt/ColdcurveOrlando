@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyController : MonoBehaviour {
     protected const float MaxVel = 4; 
 
+    private GameObject player;
     private GameObject blood;
     private SpriteRenderer spriteRenderer;
     private string spritePrefix = "manBlue";
@@ -12,14 +13,12 @@ public class EnemyController : MonoBehaviour {
 
     protected Vector3 velocity;
 
-    [SerializeField]
-    private GameObject player;
-
 	// Use this for initialization
 	void Start () {
         blood = Resources.Load<GameObject>("Blood");
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
 	}
 
     void Update() {
