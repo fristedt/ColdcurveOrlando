@@ -13,8 +13,28 @@ public class EnemyController : MonoBehaviour {
 
     protected Vector3 velocity;
 
+    [HideInInspector]
+    public IEnemyState currentState;
+    [HideInInspector]
+    public IdleState idleState;
+    [HideInInspector]
+    public InspectState inspectState;
+    [HideInInspector]
+    public AttackState attackState;
+    [HideInInspector]
+    public DeadState deadState;
+
+    private void Awake() {
+        idleState = new IdleState(this);
+        inspectState = new InspectState(this);
+        attackState = new AttackState(this);
+        deadState = new DeadState(this);
+    }
+
 	// Use this for initialization
 	void Start () {
+        currentState = idleState;
+
         blood = Resources.Load<GameObject>("Blood");
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
