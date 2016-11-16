@@ -2,16 +2,17 @@
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
-    [SerializeField]
-    private Transform playerTransform;
+    private GameObject player;
 
 	// Use this for initialization
 	void Start () {
-	
+        player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, transform.position.z);
+        if (player == null)
+            return;
+        transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
 	}
 }

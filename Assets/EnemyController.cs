@@ -22,6 +22,11 @@ public class EnemyController : MonoBehaviour {
 	}
 
     void Update() {
+        if (player == null) {
+            rigidbody2D.velocity = Vector3.zero;
+            return;
+        }
+
         velocity = Vector3.zero;
         if (CanSeePlayer()) {
             velocity = (player.transform.position - transform.position).normalized;
@@ -49,6 +54,10 @@ public class EnemyController : MonoBehaviour {
             spriteRenderer.sprite = Resources.Load<Sprite>(path);
             Destroy(go);
             weapon = new Pistol(transform);
+        }
+
+        if (go.tag == "Player") {
+            player.GetComponent<Shootable>().OnHit();
         }
     }
 }
