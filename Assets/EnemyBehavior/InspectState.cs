@@ -10,19 +10,19 @@ public class InspectState : IEnemyState {
     }
 
     public void ToAttackState() {
-        throw new NotImplementedException();
+        enemy.currentState = enemy.attackState;
     }
 
     public void ToDeadState() {
-        throw new NotImplementedException();
+        enemy.currentState = enemy.deadState;
     }
 
     public void ToIdleState() {
-        throw new NotImplementedException();
+        enemy.currentState = enemy.idleState;
     }
 
     public void ToInspectState() {
-        throw new NotImplementedException();
+        Debug.LogError("Can't transition to same state.");
     }
 
     public void UpdateState() {

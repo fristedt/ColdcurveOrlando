@@ -9,11 +9,11 @@ public class IdleState : IEnemyState {
     }
 
     public void ToAttackState() {
-        throw new NotImplementedException();
+        Debug.LogError("Only inspect can transition to attack state.");
     }
 
     public void ToDeadState() {
-        throw new NotImplementedException();
+        enemy.currentState = enemy.deadState;
     }
 
     public void ToIdleState() {
@@ -21,10 +21,10 @@ public class IdleState : IEnemyState {
     }
 
     public void ToInspectState() {
-        throw new NotImplementedException();
+        enemy.currentState = enemy.inspectState;
     }
 
     public void UpdateState() {
-        throw new NotImplementedException();
+        // Do nothing.
     }
 }
