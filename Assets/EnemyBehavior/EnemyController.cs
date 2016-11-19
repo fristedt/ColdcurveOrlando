@@ -44,18 +44,6 @@ public class EnemyController : MonoBehaviour {
         }
 
         currentState.UpdateState();
-
-        //velocity = Vector3.zero;
-        //if (CanSeePlayer()) {
-        //    velocity = (player.transform.position - transform.position).normalized;
-        //    transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
-        //    velocity *= MaxVel;
-        //}
-        //velocity = Vector3.ClampMagnitude(velocity, MaxVel);
-        //rigidbody2D.velocity = velocity;
-
-        //if (weapon != null)
-        //    weapon.Shoot();
     }
 
     public bool CanSeePlayer() {

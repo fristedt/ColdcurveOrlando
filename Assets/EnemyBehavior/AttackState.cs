@@ -18,7 +18,7 @@ public class AttackState : IEnemyState {
     }
 
     public void ToIdleState() {
-        throw new NotImplementedException();
+        enemy.currentState = enemy.idleState;
     }
 
     public void ToInspectState() {
@@ -26,6 +26,12 @@ public class AttackState : IEnemyState {
     }
 
     public void UpdateState() {
-        throw new NotImplementedException();
+        if (!enemy.CanSeePlayer())
+            ToIdleState();
+
+        Vector2 velocity = (enemy.player.transform.position - enemy.transform.position).normalized * EnemyController.MaxVel;
+        velocity = Vector2.ClampMagnitude(velocity, EnemyController.MaxVel);
+        enemy.rigidbody2D.velocity = velocity;
+        enemy.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
     }
 }

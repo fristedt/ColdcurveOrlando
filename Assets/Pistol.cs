@@ -5,7 +5,7 @@ using System;
 public class Pistol : Weapon {
     private GameObject bulletPrefab;
     private Transform holderTransform;
-    private Vector3 spawnPos = new Vector3(0.525f, -0.1f, 0);
+    private Vector3 spawnPos = new Vector3(0.225f, -0.1f, 0);
 
     public Pistol(Transform holderTransform) {
         this.holderTransform = holderTransform;

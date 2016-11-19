@@ -37,6 +37,9 @@ public class InspectState : IEnemyState {
             return;
         }
 
+        if (enemy.CanSeePlayer())
+            ToAttackState();
+
         Vector2 velocity = (path[currentTargetIndex] - (Vector2)enemy.transform.position).normalized * EnemyController.MaxVel;
         velocity = Vector2.ClampMagnitude(velocity, EnemyController.MaxVel);
         enemy.rigidbody2D.velocity = velocity;
