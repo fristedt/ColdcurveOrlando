@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     private string spritePrefix = "manBlue";
     private Weapon weapon;
-    private Rigidbody2D rigidbody2D;
+    new private Rigidbody2D rigidbody2D;
 
     protected Vector3 velocity;
 

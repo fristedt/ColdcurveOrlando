@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
 public class Grid : MonoBehaviour {
     private const float TileSize = 0.64f;
-    private const int GridSize = 32;
     private const float ZCoord = -10.0f;
     private TileState[,] grid = new TileState[GridSize, GridSize];
 
+    public const int GridSize = 32;
     public enum TileState { Empty, Obstructed };
 
-	// Use this for initialization
-	void Start () {
+	void Awake () {
         InitializeGrid();
 	}
 	
@@ -91,8 +90,29 @@ public class Grid : MonoBehaviour {
         }
     }
 
+    // Returns bottom left.
     private float IndexToCoord(int i) {
-        float halfTile = TileSize / 2;
-        return halfTile + i * TileSize;
+        return i * TileSize;
+    }
+
+    public float IndexToCenterCoord(int i) {
+        return IndexToCoord(i) + TileSize / 2;
+    }
+
+    public int CoordToIndex(float coord) {
+        float MaxPos = IndexToCoord(GridSize - 1) + TileSize;
+        if (coord < 0 || coord > MaxPos)
+            throw new ArgumentOutOfRangeException("coord", coord, "Coordinate not in grid.");
+
+        return (int)(coord / TileSize);
+    }
+
+    public TileState this[int x, int y] {
+        get {
+            return grid[x, y];
+        }
+        set {
+            grid[x, y] = value;
+        }
     }
 }
