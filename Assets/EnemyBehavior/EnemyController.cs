@@ -2,16 +2,14 @@
 using System.Collections;
 
 public class EnemyController : MonoBehaviour {
-    protected const float MaxVel = 4; 
+    public const float MaxVel = 4; 
+    new public Rigidbody2D rigidbody2D;
 
-    private GameObject player;
+    public GameObject player;
     private GameObject blood;
     private SpriteRenderer spriteRenderer;
     private string spritePrefix = "manBlue";
     private Weapon weapon;
-    new private Rigidbody2D rigidbody2D;
-
-    protected Vector3 velocity;
 
     [HideInInspector]
     public IEnemyState currentState;
@@ -24,15 +22,13 @@ public class EnemyController : MonoBehaviour {
     [HideInInspector]
     public DeadState deadState;
 
-    private void Awake() {
+	// Use this for initialization
+	void Start () {
         idleState = new IdleState(this);
         inspectState = new InspectState(this);
         attackState = new AttackState(this);
         deadState = new DeadState(this);
-    }
 
-	// Use this for initialization
-	void Start () {
         currentState = idleState;
 
         blood = Resources.Load<GameObject>("Blood");
@@ -47,20 +43,22 @@ public class EnemyController : MonoBehaviour {
             return;
         }
 
-        velocity = Vector3.zero;
-        if (CanSeePlayer()) {
-            velocity = (player.transform.position - transform.position).normalized;
-            transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
-            velocity *= MaxVel;
-        }
-        velocity = Vector3.ClampMagnitude(velocity, MaxVel);
-        rigidbody2D.velocity = velocity;
+        currentState.UpdateState();
 
-        if (weapon != null)
-            weapon.Shoot();
+        //velocity = Vector3.zero;
+        //if (CanSeePlayer()) {
+        //    velocity = (player.transform.position - transform.position).normalized;
+        //    transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
+        //    velocity *= MaxVel;
+        //}
+        //velocity = Vector3.ClampMagnitude(velocity, MaxVel);
+        //rigidbody2D.velocity = velocity;
+
+        //if (weapon != null)
+        //    weapon.Shoot();
     }
 
-    bool CanSeePlayer() {
+    public bool CanSeePlayer() {
         Vector3 dir = player.transform.position - transform.position;
         Debug.DrawRay(transform.position, dir);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);

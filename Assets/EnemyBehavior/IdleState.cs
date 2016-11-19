@@ -21,10 +21,12 @@ public class IdleState : IEnemyState {
     }
 
     public void ToInspectState() {
+        enemy.inspectState.SetPathTo(enemy.player.transform.position);
         enemy.currentState = enemy.inspectState;
     }
 
     public void UpdateState() {
-        // Do nothing.
+        if (enemy.CanSeePlayer())
+            ToInspectState();
     }
 }
