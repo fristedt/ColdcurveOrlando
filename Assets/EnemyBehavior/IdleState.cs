@@ -21,7 +21,7 @@ public class IdleState : IEnemyState {
     }
 
     public void ToInspectState() {
-        enemy.inspectState.SetPathTo(enemy.player.transform.position);
+        enemy.inspectState.SetInspectPosition(enemy.player.transform.position);
         enemy.currentState = enemy.inspectState;
     }
 

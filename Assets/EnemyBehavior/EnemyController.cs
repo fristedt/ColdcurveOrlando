@@ -66,4 +66,11 @@ public class EnemyController : MonoBehaviour {
             player.GetComponent<Shootable>().OnHit();
         }
     }
+
+    public void GunshotHeard(Vector2 gunshotLocation) {
+        if (currentState == idleState || currentState == inspectState) {
+            inspectState.SetInspectPosition(gunshotLocation);
+            currentState = inspectState;
+        }
+    }
 }

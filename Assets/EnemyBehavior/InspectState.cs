@@ -49,7 +49,7 @@ public class InspectState : IEnemyState {
             currentTargetIndex += 1;
     }
     
-    public void SetPathTo(Vector2 destination) {
+    public void SetInspectPosition(Vector2 destination) {
         path = pathfinder.GetPathTo(destination);
         currentTargetIndex = 0;
     }
